@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>TOOL MD5 SUNWIN | AI HACKER</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      background: black;
+      color: #00ffe0;
+      font-family: monospace;
+    }
+    .left, .right {
+      height: 100%;
+      padding: 20px;
+      overflow-y: auto;
+    }
+    .left {
+      width: 45%;
+      border-right: 2px solid #00ffe0;
+    }
+    .right {
+      width: 55%;
+      text-align: center;
+    }
+    input, button {
+      padding: 12px;
+      margin-top: 10px;
+      font-size: 16px;
+      background: #111;
+      color: #00ffe0;
+      border: 2px solid #00ffe0;
+      border-radius: 5px;
+      width: 80%;
+      box-shadow: 0 0 10px #00ffe0;
+    }
+    button {
+      background: #00ffe0;
+      color: black;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #00fff0;
+    }
+    h2 {
+      text-shadow: 0 0 10px #00fff0;
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <div class="left">
+    <h2>🔍 TOOL PHÂN TÍCH SICBO MD5</h2>
+    <input id="md5" type="text" placeholder="Nhập mã MD5 tại Sunwin">
+    <button onclick="analyze()">Phân Tích</button>
+    <div class="result" id="output"></div>
+    <div class="result" id="ai"></div>
+  </div>
+
+  <div class="right">
+    <h2>🎮 KHU VỰC GAME </h2>
+    <p>⚠️ Trang GAME sẽ được mở ở tab mới vì không thể nhúng trực tiếp.</p>
+    <button onclick="window.open('https://i.hit.club', '_blank')">➡️ MỞ GAME</button>
+    <p> LƯU Ý ❗: </p>
+    <p> • Tool Là Phần Mềm Dự Đoán Nên Không Thể Đoán Chuẩn Được 100%
+    <p> • Thắng Vui, Thua Nghĩ Không Ham, Liều
+    <p> • Tool Cân Được Mọi Loại Sảnh (Nếu Có MD5)
+    <br> MỌI THẮC MẮC LIÊN HỆ DƯỚI ĐÂY 👇 </br>
+    <a href="Facebook= https://www.facebook.com/share/16bKubVxhv/" target="_blank" style="color: #111111; font-weight: bold;">ADMIN: Quốc Tuấn 🍎 </a>
+  </div>
+
+  <script>
+    let history = [];
+
+    function analyze() {
+      const input = document.getElementById("md5").value.trim();
+      if (!input) {
+        alert("Vui lòng nhập mã MD5!");
+        return;
+      }
+      try {
+        const seed = BigInt("0x" + input);
+        const d1 = Number(seed % 6n) + 1;
+        const d2 = Number((seed / 7n) % 6n) + 1;
+        const d3 = Number((seed / 54n) % 6n) + 1;
+        const total = d1 + d2 + d3;
+        const result = total >= 11 ? "Tài" : "Xỉu";
+        history.push(result);
+        if (history.length > 9) history.shift();
+
+        let ai = "🤖 Cầu hỗn hợp";
+        const t = history.filter(r => r === "Tài").length;
+        const x = history.filter(r => r === "Xỉu").length;
+        if (t > x) ai = "💡 Có thể Xỉu";
+        else if (x > t) ai = "💡 Có thể Tài";
+
+        document.getElementById("output").innerHTML = `
+          🎲 Xúc xắc: ${d1} - ${d2} - ${d3}<br>
+          🔢 Tổng: ${total}<br>
+          📌 Kết quả: <b>${result}</b>
+        `;
+        document.getElementById("ai").innerText = `🤖 AI dự đoán: ${ai}\nLịch sử: ${history.join(" → ")}`;
+      } catch {
+        document.getElementById("output").innerHTML = `<span style="color:red">MD5 không hợp lệ!</span>`;
+      }
+    }
+  </script>
+</body>
+</html>
